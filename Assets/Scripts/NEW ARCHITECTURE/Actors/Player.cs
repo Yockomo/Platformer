@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Player : Actor, ICanAtack
@@ -16,7 +15,6 @@ public class Player : Actor, ICanAtack
         if (TryGetComponent<IMoveAndRotate>(out IMoveAndRotate movable))
         {
             AddBehaviour(CreateMoveBehaviour(movable));
-            AddBehaviour(CreateRotateBehaviour(movable));
         }
         else
             Debug.LogError("There is no IMoveAndRotate component on  " + gameObject.name);
@@ -26,7 +24,6 @@ public class Player : Actor, ICanAtack
     {
         _playerInputs = GetComponent<InputSystem>();
         _characterController = GetComponent<CharacterController>();
-
         _playersAnimatorManager = new PlayerAnimatorManager(GetComponent<Animator>());
     }
 
@@ -34,10 +31,5 @@ public class Player : Actor, ICanAtack
     {
         return new PlayerStandartMoveBehaviour(movable, _playerInputs,
             _characterController, _playersAnimatorManager);;
-    }
-
-    private PlayerStandartRotateBehaviour CreateRotateBehaviour(IMoveAndRotate movable)
-    {
-        return new PlayerStandartRotateBehaviour(movable, _playerInputs);;
     }
 }

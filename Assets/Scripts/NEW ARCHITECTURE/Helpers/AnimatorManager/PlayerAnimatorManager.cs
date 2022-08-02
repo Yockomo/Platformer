@@ -48,11 +48,6 @@ public class PlayerAnimatorManager : AnimatorManager
         _animator.SetTrigger(_atack);
     }
 
-    public bool GetAtack()
-    {
-        return _animator.GetBool(_atack);
-    }
-
     public void SetDeadAnimation(bool value)
     {
         _animator.SetBool(_dead, value);

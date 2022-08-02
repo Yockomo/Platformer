@@ -10,4 +10,4 @@ public abstract class MoveBehaviour<T> : BaseBehaviour, IMoveBehaviour where T :
     }
 }
 
-public enum MoveState { DEFAULT, PAUSE, UNPAUSE, ATACK }
+public enum MoveState { DEFAULT, ATACK, PAUSE, UNPAUSE }

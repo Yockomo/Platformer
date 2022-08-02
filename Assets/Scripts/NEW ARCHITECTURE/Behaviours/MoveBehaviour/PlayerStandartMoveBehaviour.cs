@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSetState<MoveState>
@@ -15,6 +14,7 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
     private bool Grounded = true;
     private bool isDoubleJumped;
     private float _terminalVelocity = 53.0f;
+    private float _rotationVelocity;
     private float _jumpTimeoutDelta;
     private float _fallTimeoutDelta;
 
@@ -32,11 +32,6 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
     public void SetState(MoveState state)
     {
         _currentState = state;
-    }
-
-    public void SetAtackState()
-    {
-        SetState(MoveState.ATACK);
     }
 
     public void SetDefaultState()
@@ -64,8 +59,8 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
         switch (_currentState)
         {
             case MoveState.DEFAULT:
-                JumpAndGravity();
                 GroundedCheck();
+                JumpAndGravity();
                 Move();
                 break;
             case MoveState.ATACK:
@@ -108,9 +103,14 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                               _mainCamera.transform.eulerAngles.y;
+            float rotation = Mathf.SmoothDampAngle(_movable.Transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+                _movable.RotationSmoothTime);
+
+            _movable.Transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         }
 
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                          new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
