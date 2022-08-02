@@ -23,7 +23,7 @@ public class InputSystem : MonoBehaviour
     {
         var horizontalInput = Input.GetAxis(GlobalStrings.HorizontalAxis);
         var verticalInput = Input.GetAxis(GlobalStrings.VerticalAxis);
-        Movement.Set(horizontalInput,verticalInput);
+        Movement = new Vector2(horizontalInput,verticalInput);
     }
 
     private void HandleJumpInput()

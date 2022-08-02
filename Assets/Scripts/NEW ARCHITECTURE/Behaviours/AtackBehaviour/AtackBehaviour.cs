@@ -10,7 +10,7 @@
         }
     }
 
-    public enum AtackStates { DEFAULT, ATACK, PAUSE, UNPAUSE, }
+    public enum AtackStates { DEFAULT ,ATACK, PAUSE, UNPAUSE, }
 
     public interface IAtackBehaviour : IBehaviour
     {

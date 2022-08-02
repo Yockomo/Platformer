@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSetState<MoveState>
@@ -110,12 +111,10 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
         }
 
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                          new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
         _animatorManager.SetSpeedParameter(_animationBlend);
-        _animatorManager.SetMotionSpeedParameter(inputMagnitude);
     }
 
     private void JumpAndGravity()
@@ -127,7 +126,6 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
             _fallTimeoutDelta = _movable.FallTimeout;
 
             _animatorManager.SetJump(false);
-            _animatorManager.SetFreeFall(false);
 
             if (_verticalVelocity < 0.0f)
             {
@@ -162,10 +160,7 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
             {
                 _fallTimeoutDelta -= Time.deltaTime;
             }
-            else
-            {
-                _animatorManager.SetFreeFall(true);
-            }
+
             _input.Jump = false;
         }
 

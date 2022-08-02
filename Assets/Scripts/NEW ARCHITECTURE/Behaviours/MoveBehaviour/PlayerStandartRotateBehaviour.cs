@@ -29,11 +29,6 @@ public class PlayerStandartRotateBehaviour : MoveBehaviour<IMoveAndRotate>, ICan
         SetState(MoveState.UNPAUSE);
     }
 
-    public void SetAtackState()
-    {
-        SetState(MoveState.ATACK);
-    }
-
     public void SetDefaultState()
     {
         SetState(MoveState.DEFAULT);
@@ -70,7 +65,7 @@ public class PlayerStandartRotateBehaviour : MoveBehaviour<IMoveAndRotate>, ICan
                               _mainCamera.transform.eulerAngles.y;
             float rotation = Mathf.SmoothDampAngle(_movable.Transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                 _movable.RotationSmoothTime);
-
+            Debug.Log(rotation);
             _movable.Transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         }
     }
