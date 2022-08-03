@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public interface IMovable : IHaveTransform, IHaveMoveSpeed
+public interface IMovable :  IHaveMoveSpeed
 { 
 }
 
 public interface IMoveAndRotate : IMovable, IHaveRotationSmoothTime, IJump
 { 
-}
-
-public interface IHaveTransform
-{
-    Transform Transform { get; }
 }
 
 public interface IHaveMoveSpeed

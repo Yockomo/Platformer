@@ -21,18 +21,15 @@ using Zenject;
         
         protected override void Init()
         {
-            if (TryGetComponent<IMoveAndRotate>(out var movable))
+            if (animateMovement)
             {
-                if(animateMovement)
-                    _enemyChaisePlayerLogic = new EnemyChaisePlayerMoveBehaviour
-                    (movable, enemyMoveConfig, _playersTransform, GetComponent<NavMeshAgent>(),GetComponent<IHaveMoveAnimation>());
-                else
-                {
-                    _enemyChaisePlayerLogic = new EnemyChaisePlayerMoveBehaviour
-                        (movable, enemyMoveConfig, _playersTransform, GetComponent<NavMeshAgent>());
-                }
+                _enemyChaisePlayerLogic = new EnemyChaisePlayerMoveBehaviour(null, enemyMoveConfig, transform, 
+                    _playersTransform, GetComponent<NavMeshAgent>(),GetComponent<IHaveMoveAnimation>());   
             }
             else
-                Debug.LogError("нет компонента Movable или IHaveMoveAnimation на " + gameObject.name);
+            {
+                _enemyChaisePlayerLogic = new EnemyChaisePlayerMoveBehaviour
+                    (null, enemyMoveConfig, transform,_playersTransform, GetComponent<NavMeshAgent>());
+            }
         }
     }

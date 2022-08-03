@@ -5,7 +5,8 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
     private InputSystem _input;
     private CharacterController _controller;
     private PlayerAnimatorManager _animatorManager;
-
+    private Transform _transform;
+    
     private float _speed;
     private float _targetRotation;
     private float _verticalVelocity;
@@ -21,10 +22,11 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
     private float _animationBlend;
 
     public PlayerStandartMoveBehaviour(IMoveAndRotate movable, InputSystem inputs,
-        CharacterController controller, PlayerAnimatorManager animatorManager) : base(movable)
+        CharacterController controller, Transform transform,PlayerAnimatorManager animatorManager) : base(movable)
     {
         _input = inputs;
         _controller = controller;
+        _transform = transform;
         _animatorManager = animatorManager;
         _mainCamera = Camera.main;
     }
@@ -103,10 +105,10 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                               _mainCamera.transform.eulerAngles.y;
-            float rotation = Mathf.SmoothDampAngle(_movable.Transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+            float rotation = Mathf.SmoothDampAngle(_transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                 _movable.RotationSmoothTime);
 
-            _movable.Transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+            _transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         }
 
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
@@ -172,8 +174,8 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
 
     private void GroundedCheck()
     {
-        Vector3 spherePosition = new Vector3(_movable.Transform.position.x, _movable.Transform.position.y - _movable.GroundedOffset,
-            _movable.Transform.position.z);
+        Vector3 spherePosition = new Vector3(_transform.position.x, _transform.position.y - _movable.GroundedOffset,
+            _transform.position.z);
         Grounded = Physics.CheckSphere(spherePosition, _movable.GroundedRadius, _movable.GroundLayers,
             QueryTriggerInteraction.Ignore);
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyStats", menuName = "ScriptableObjects/EnemyChaiseMoveConfig", order = 1)]
+[CreateAssetMenu(fileName = "EnemyStats", menuName = "ScriptableObjects/EnemiesConfigs/EnemyChaiseMoveConfig", order = 1)]
 public class EnemyMovementAndAtackConfig : ScriptableObject
 {
     [SerializeField] private float stoppingDistance = 1;

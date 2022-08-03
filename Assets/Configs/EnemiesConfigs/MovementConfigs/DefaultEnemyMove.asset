@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658f0c374134f384d9e5c79e200ce743, type: 3}
   m_Name: DefaultEnemyMove
   m_EditorClassIdentifier: 
-  stoppingDistance: 1
-  reactDistance: 0
+  stoppingDistance: 0
+  reactDistance: 3
   moveSpeed: 3

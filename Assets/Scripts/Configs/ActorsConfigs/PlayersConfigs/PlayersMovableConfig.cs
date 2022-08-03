@@ -1,6 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CharacterMovableComponent : MonoBehaviour, IMoveAndRotate
+[CreateAssetMenu(fileName = "PlayersMovableStats", menuName = "ScriptableObjects/PlayersConfigs/PlayersMoveConfig", order = 2)]
+public class PlayersMovableConfig : ScriptableObject, IMoveAndRotate
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 3;
@@ -17,8 +18,6 @@ public class CharacterMovableComponent : MonoBehaviour, IMoveAndRotate
     [SerializeField] private float groundedOffset = 0.14f;
     [SerializeField] private float groundedRadius = 0.28f;
     [SerializeField] private LayerMask groundLayers;
-
-    public Transform Transform => transform;
 
     public float MoveSpeed => moveSpeed;
 

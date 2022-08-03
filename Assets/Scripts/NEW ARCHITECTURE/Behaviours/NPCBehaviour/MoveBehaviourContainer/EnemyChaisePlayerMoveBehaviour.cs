@@ -5,6 +5,7 @@ public class EnemyChaisePlayerMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICa
 {
     private EnemyMovementAndAtackConfig _enemyChaiseMoveConfig;
 
+    private Transform _enemyTransform;
     private Transform _playersTransform;
     private NavMeshAgent _navMeshAgent;
     private IHaveMoveAnimation _moveAnimation;
@@ -13,26 +14,27 @@ public class EnemyChaisePlayerMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICa
     
     private float _distanceToTarget;
 
-    public EnemyChaisePlayerMoveBehaviour(IMoveAndRotate movable, EnemyMovementAndAtackConfig enemyChaiseMoveConfig,
+    public EnemyChaisePlayerMoveBehaviour(IMoveAndRotate movable, EnemyMovementAndAtackConfig enemyChaiseMoveConfig,Transform enemyTransform,
         Transform playersTransform, NavMeshAgent navmeshAgent, IHaveMoveAnimation moveAnimation) : base(movable)
     {
-        GetNecessaryDependencies(enemyChaiseMoveConfig,playersTransform,navmeshAgent);
+        GetNecessaryDependencies(enemyChaiseMoveConfig,playersTransform,navmeshAgent,enemyTransform);
         _moveAnimation = moveAnimation;
         _haveAnimator = true;
     }
     
-    public EnemyChaisePlayerMoveBehaviour(IMoveAndRotate movable, EnemyMovementAndAtackConfig enemyChaiseMoveConfig,
+    public EnemyChaisePlayerMoveBehaviour(IMoveAndRotate movable, EnemyMovementAndAtackConfig enemyChaiseMoveConfig, Transform enemyTransform,
         Transform playersTransform, NavMeshAgent navmeshAgent) : base(movable)
     {
-        GetNecessaryDependencies(enemyChaiseMoveConfig,playersTransform,navmeshAgent);
+        GetNecessaryDependencies(enemyChaiseMoveConfig,playersTransform,navmeshAgent, enemyTransform);
     }
 
     private void GetNecessaryDependencies(EnemyMovementAndAtackConfig enemyChaiseMoveConfig,
-        Transform playersTransform, NavMeshAgent navmeshAgent)
+        Transform playersTransform, NavMeshAgent navmeshAgent, Transform enemyTransform)
     {
         _enemyChaiseMoveConfig = enemyChaiseMoveConfig;
         _playersTransform = playersTransform;
         _navMeshAgent = navmeshAgent;
+        _enemyTransform = enemyTransform;
     }
     
     public override void Pause()
@@ -57,7 +59,7 @@ public class EnemyChaisePlayerMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICa
 
     private void HandleCurrentState()
     {
-        _distanceToTarget = Vector3.Distance(_movable.Transform.position, _playersTransform.position);
+        _distanceToTarget = Vector3.Distance(_enemyTransform.position, _playersTransform.position);
 
         switch (_currentState)
         {
@@ -107,9 +109,9 @@ public class EnemyChaisePlayerMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICa
 
     private void LookAtPlayer()
     {
-        var lookPoint = new Vector3(_playersTransform.position.x, _movable.Transform.position.y,
+        var lookPoint = new Vector3(_playersTransform.position.x, _enemyTransform.position.y,
             _playersTransform.position.z);
-        _movable.Transform.LookAt(lookPoint);
+        _enemyTransform.LookAt(lookPoint);
     }
     
     private void StopMovement(bool value)
