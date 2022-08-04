@@ -13,10 +13,10 @@ using UnityEngine;
                 if (GetValue != null)
                     behaviourOwner.AddBehaviour(GetValue);
                 else
-                    Debug.LogError("нет поведения перемещения в контейнере " + gameObject.name);
+                    Debug.LogError("Behaviour was not initialized in container on " + gameObject.name);
             }
             else
-                Debug.LogError($"нет владельца для бихейвера {gameObject.name }  {this.name}");
+                Debug.LogError($"There is no Actor for behaviour on {gameObject.name}");
         }
 
         protected abstract void Init();

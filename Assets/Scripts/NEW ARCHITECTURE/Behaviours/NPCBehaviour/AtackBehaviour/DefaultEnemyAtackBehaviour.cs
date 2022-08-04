@@ -1,6 +1,7 @@
+    using System.Collections;
     using UnityEngine;
 
-    public class DefaultEnemyAtackBehaviour : AtackBehaviour<ICanAtack>, ICanSetState<AtackStates>
+    public class DefaultEnemyAtackBehaviour : AtackBehaviour<ICanAttack>, ICanSetState<AtackStates>
     {
         private EnemyMovementAndAtackConfig _atackConfig;
         
@@ -11,13 +12,13 @@
         private bool _haveAnimator;
         private IHaveAtackAnimation _atackAnimation;
 
-        public DefaultEnemyAtackBehaviour(ICanAtack attacker, EnemyMovementAndAtackConfig atackConfig,Transform playersTransform,
+        public DefaultEnemyAtackBehaviour(ICanAttack attacker, EnemyMovementAndAtackConfig atackConfig,Transform playersTransform,
             Transform attackerTransform) : base(attacker)
         {
             GetNecessaryDependencies(atackConfig,playersTransform,attackerTransform);
         }
         
-        public DefaultEnemyAtackBehaviour(ICanAtack attacker, EnemyMovementAndAtackConfig atackConfig,Transform playersTransform,
+        public DefaultEnemyAtackBehaviour(ICanAttack attacker, EnemyMovementAndAtackConfig atackConfig,Transform playersTransform,
             Transform attackerTransform,IHaveAtackAnimation atackAnimation) : base(attacker)
         {
             GetNecessaryDependencies(atackConfig,playersTransform,attackerTransform);
@@ -34,7 +35,7 @@
         
         public void SetState(AtackStates state)
         {
-            currentState = state;
+            _currentState = state;
         }
         
         public override void Pause()
@@ -57,7 +58,7 @@
         {
             _distanceToTarget = Vector3.Distance(_attackerTransform.position, _playersTransform.position);
             
-            switch (currentState)
+            switch (_currentState)
             {
                 case AtackStates.DEFAULT:
                     DefaultState();
@@ -114,7 +115,7 @@
         
         private void SetAttack(bool state)
         {
-            if (_atackAnimation.GetAtackState() != state && _haveAnimator)
+            if (_haveAnimator && _atackAnimation.GetAtackState() != state)
             {
                 _atackAnimation.SetAttackState(state);
             }

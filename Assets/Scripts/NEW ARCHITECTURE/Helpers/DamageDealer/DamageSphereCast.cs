@@ -17,15 +17,11 @@ public class DamageSphereCast
                     try
                     {
                         changable.DecValue(damage);
-#if (UNITY_EDITOR)
                         Debug.Log("hit " + hit.transform.name);
-#endif
                     }
                     catch
                     {
-#if (UNITY_EDITOR)
                         Debug.Log("DamageDealer can't take HEALTH");
-#endif
                     }
                 }
             }

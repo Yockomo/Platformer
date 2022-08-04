@@ -1,35 +1,26 @@
 using UnityEngine;
 
-public class Player : Actor, ICanAtack
+public class Player : Actor, ICanAttack, IHaveAnimatorManager<PlayerAnimatorManager>
 {
-    private InputSystem _playerInputs;
-    private CharacterController _characterController;
-    
-    private PlayerAnimatorManager _playersAnimatorManager;
-    private PlayerAttackBehaviour _meleeAtackBehaviour;
+    private PlayerAnimatorManager _animatorManager;
 
     protected override void Init()
     {
-        GetReferencesFromObject();
+    }
 
-        if (TryGetComponent<IMoveAndRotate>(out IMoveAndRotate movable))
+    public PlayerAnimatorManager GetAnimatorManager()
+    {
+        if (_animatorManager == null)
         {
-            AddBehaviour(CreateMoveBehaviour(movable));
+            _animatorManager = new PlayerAnimatorManager(GetComponent<Animator>());
+            return _animatorManager;
         }
         else
-            Debug.LogError("There is no IMoveAndRotate component on  " + gameObject.name);
+            return _animatorManager;
     }
+}
 
-    private void GetReferencesFromObject()
-    {
-        _playerInputs = GetComponent<InputSystem>();
-        _characterController = GetComponent<CharacterController>();
-        _playersAnimatorManager = new PlayerAnimatorManager(GetComponent<Animator>());
-    }
-
-    private PlayerStandartMoveBehaviour CreateMoveBehaviour(IMoveAndRotate movable)
-    {
-        return new PlayerStandartMoveBehaviour(movable, _playerInputs,
-            _characterController, _playersAnimatorManager);;
-    }
+public interface IHaveAnimatorManager<T> where T : AnimatorManager
+{
+    T GetAnimatorManager();
 }

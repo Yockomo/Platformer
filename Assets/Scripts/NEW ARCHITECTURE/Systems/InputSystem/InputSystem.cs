@@ -18,12 +18,12 @@ public class InputSystem : MonoBehaviour
         HandleJumpInput();
         HandleAtackInput();
     }
-    
+
     private void HandleMovementInput()
     {
         var horizontalInput = Input.GetAxis(GlobalStrings.HorizontalAxis);
         var verticalInput = Input.GetAxis(GlobalStrings.VerticalAxis);
-        Movement = new Vector2(horizontalInput,verticalInput);
+        Movement = new Vector2(horizontalInput, verticalInput);
     }
 
     private void HandleJumpInput()
