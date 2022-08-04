@@ -6,7 +6,6 @@ public class OneWayComponent : MonoBehaviour
     [SerializeField] private Vector3 _entryDirection = Vector3.up;
     private BoxCollider _collider;
     private BoxCollider _collisionTrigger;
-    private float _triggerScale = 1.3f;
 
     private bool _isActive;
     

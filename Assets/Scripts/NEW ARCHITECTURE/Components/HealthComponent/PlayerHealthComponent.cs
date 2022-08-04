@@ -1,13 +1,11 @@
-﻿
-    using System;
-    using UnityEngine;
+﻿using UnityEngine;
 
-    public class PlayerHealthComponent : Health
+public class PlayerHealthComponent : Health
+{
+    [SerializeField] private float hp;
+
+    private void Update()
     {
-        [SerializeField] private float hp;
-
-        private void Update()
-        {
-            hp = currentHealth;
-        }
+        hp = currentHealth;
     }
+}
