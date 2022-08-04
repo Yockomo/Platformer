@@ -8,6 +8,8 @@ public abstract class DamageDealerComponent : MonoBehaviour
     [SerializeField] protected float hitDistance;
     [SerializeField] protected int countToDamage;
 
+    protected DamageSphereCast _damageSphereCast;
+    
     protected virtual void Start() 
     {
         Init();
@@ -15,11 +17,11 @@ public abstract class DamageDealerComponent : MonoBehaviour
 
     protected virtual void Init()
     {
+        _damageSphereCast = new DamageSphereCast();
     }
 
     public virtual void Attack()
     {
-        DamageSphereCast damageSphereCast = new DamageSphereCast();
-        damageSphereCast.AttackSphereCast(this.transform, damage, hitDistance, hitRadius, countToDamage, damageTo);
+        _damageSphereCast.AttackSphereCast(this.transform, damage, hitDistance, hitRadius, countToDamage, damageTo);
     }
 }

@@ -21,6 +21,14 @@ public class PlayersMovableConfig : ScriptableObject, IMoveAndRotate
 
     public float MoveSpeed => moveSpeed;
 
+    public void SetMoveSpeed(float value)
+    {
+        if (value >= 0)
+        {
+            moveSpeed = value;   
+        }
+    }
+    
     public float SpeedChangeRate => speedChangeRate;
 
     public float RotationSmoothTime => rotationSmoothTime;

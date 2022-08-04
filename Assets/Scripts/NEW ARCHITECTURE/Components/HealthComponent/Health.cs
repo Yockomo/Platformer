@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class Health : MonoBehaviour, IHealth, IHealthChanger
 {
-    protected int fullHealth;
+    [SerializeField] protected int fullHealth;
     protected int currentHealth;
 
     public int CurrentHealth => currentHealth;

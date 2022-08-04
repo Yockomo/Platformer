@@ -1,12 +1,12 @@
 ﻿
-    public abstract class AtackBehaviour<T> : BaseBehaviour, IAtackBehaviour where T : ICanAtack
+    public abstract class AtackBehaviour<T> : BaseBehaviour, IAtackBehaviour
     {
-        protected T attacker;
-        protected AtackStates currentState;
+        protected T _attacker;
+        protected AtackStates _currentState;
 
         protected AtackBehaviour(T attacker)
         {
-            this.attacker = attacker;
+            this._attacker = attacker;
         }
     }
 

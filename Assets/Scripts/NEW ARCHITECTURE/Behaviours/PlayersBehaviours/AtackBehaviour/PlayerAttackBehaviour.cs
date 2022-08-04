@@ -1,14 +1,13 @@
 ﻿using System;
 
-public class PlayerAttackBehaviour : AtackBehaviour<ICanAtack>, ICanSetState<AtackStates>
+public class PlayerAttackBehaviour : AtackBehaviour<ICanAttack>, ICanSetState<AtackStates>
 {
     private InputSystem _input;
     private PlayerAnimatorManager _animatorManager;
 
     public event Action OnAtackEventStart;
-    public event Action OnAtackEventEnd;
 
-    public PlayerAttackBehaviour(ICanAtack attacker,
+    public PlayerAttackBehaviour(ICanAttack attacker,
         InputSystem inputs, PlayerAnimatorManager animatorManager) : base(attacker)
     {
         _input = inputs;
@@ -17,7 +16,7 @@ public class PlayerAttackBehaviour : AtackBehaviour<ICanAtack>, ICanSetState<Ata
 
     public void SetState(AtackStates state)
     {
-        currentState = state;
+        _currentState = state;
     }
         
     public override void Pause()
@@ -37,7 +36,7 @@ public class PlayerAttackBehaviour : AtackBehaviour<ICanAtack>, ICanSetState<Ata
         
     void HandleCurrentState()
     {
-        switch (currentState)
+        switch (_currentState)
         {
             case AtackStates.ATACK:
                 HandleFirstAtack();

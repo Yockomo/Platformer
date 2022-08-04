@@ -6,7 +6,6 @@ public class InputSystem : MonoBehaviour
     public Vector2 Movement { get; private set; }
     public bool Jump { get; set; }
     public bool Atack { get; private set; }
-    public bool Dash { get; private set; }
 
     private void Update()
     {
@@ -18,7 +17,6 @@ public class InputSystem : MonoBehaviour
         HandleMovementInput();
         HandleJumpInput();
         HandleAtackInput();
-        HandleDashInput();
     }
 
     private void HandleMovementInput()
@@ -36,10 +34,5 @@ public class InputSystem : MonoBehaviour
     private void HandleAtackInput()
     {
         Atack = Input.GetKey(KeyCode.Mouse0);
-    }
-
-    private void HandleDashInput()
-    {
-        Dash = Input.GetKeyDown(KeyCode.LeftShift);
     }
 }
