@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ScoreUpComponent : MonoBehaviour
 {
-    [SerializeField] private int _pointsForCoin;
+    [SerializeField] private int _pointsPickUp;
 
     private ActivatedActor _activatedActor;
     private IScoreKeeper _scoreKeeper;
@@ -27,7 +27,7 @@ public class ScoreUpComponent : MonoBehaviour
 
         if (_scoreKeeper != null)
         {
-            _scoreKeeper.ScoreUp(_pointsForCoin);
+            _scoreKeeper.ScoreUp(_pointsPickUp);
             gameObject.SetActive(false);
         }
     }
