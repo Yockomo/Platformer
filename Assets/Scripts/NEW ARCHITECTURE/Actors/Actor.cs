@@ -1,10 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public abstract class Actor : MonoBehaviour, IActor
 {
     protected List<IBehaviour> behaviours = new List<IBehaviour>(20);
+
+    [Inject]
+    protected virtual void Construct(IPauseRegister pauseRegister)
+    {
+        pauseRegister.RegisterActor(this);
+    }
     
     protected virtual void Start()
     {
@@ -27,7 +33,7 @@ public abstract class Actor : MonoBehaviour, IActor
         behaviour.Actor = this;
     }
 
-    public void SetPause(bool value)
+    public virtual void SetPause(bool value)
     {
         if (value)
             foreach (var b in behaviours)

@@ -7,6 +7,8 @@ public class InputSystem : MonoBehaviour
     public bool Jump { get; set; }
     public bool Atack { get; private set; }
 
+    public bool Pause { get; private set; }
+    
     private void Update()
     {
         HandleInputs();
@@ -17,6 +19,7 @@ public class InputSystem : MonoBehaviour
         HandleMovementInput();
         HandleJumpInput();
         HandleAtackInput();
+        HandlePauseInput();
     }
 
     private void HandleMovementInput()
@@ -34,5 +37,13 @@ public class InputSystem : MonoBehaviour
     private void HandleAtackInput()
     {
         Atack = Input.GetKey(KeyCode.Mouse0);
+    }
+
+    private void HandlePauseInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause = !Pause;
+        }
     }
 }

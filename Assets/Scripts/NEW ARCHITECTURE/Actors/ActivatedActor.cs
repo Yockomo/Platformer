@@ -4,17 +4,27 @@ using UnityEngine;
 
 public abstract class ActivatedActor : Actor, IActivatedActor, IDisposable
 {
+    [SerializeField] private bool _isActiveDuringPause;
+    
     public bool IsActive { get; private set; }
     
     public Actor Activator { get; private set; }
     
     public event Action OnActivationEvent;
     public event Action OnDiactivationEvent;
-    
+
     protected override void Update()
     {
         if(IsActive)
             base.Update();
+    }
+
+    public override void SetPause(bool value)
+    {
+        if(_isActiveDuringPause)
+        base.SetPause(value);
+        if(value)
+            IsActive = false;
     }
 
     protected virtual void OnTriggerEnter(Collider other)

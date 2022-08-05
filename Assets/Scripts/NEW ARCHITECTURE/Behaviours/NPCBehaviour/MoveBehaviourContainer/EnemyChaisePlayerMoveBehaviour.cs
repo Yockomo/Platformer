@@ -70,10 +70,10 @@ public class EnemyChaisePlayerMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICa
                 AtackState();
                 break;
             case (MoveState.PAUSE):
-                StopMovement(false);
+                StopMovement(true);
                 break;
             case (MoveState.UNPAUSE):
-                StopMovement(true);
+                StopMovement(false);
                 SetState(MoveState.DEFAULT);
                 break;
         }
