@@ -4,8 +4,6 @@ using UnityEngine;
 
 public abstract class ActivatedActor : Actor, IActivatedActor, IDisposable
 {
-    [SerializeField] private bool _isActiveDuringPause;
-    
     public bool IsActive { get; private set; }
     
     public Actor Activator { get; private set; }
@@ -17,14 +15,6 @@ public abstract class ActivatedActor : Actor, IActivatedActor, IDisposable
     {
         if(IsActive)
             base.Update();
-    }
-
-    public override void SetPause(bool value)
-    {
-        if(_isActiveDuringPause)
-        base.SetPause(value);
-        if(value)
-            IsActive = false;
     }
 
     protected virtual void OnTriggerEnter(Collider other)
