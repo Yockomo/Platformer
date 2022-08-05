@@ -1,5 +1,5 @@
-
-public class Platforms : ActivatedActor
+﻿
+public class Coin : ActivatedActor
 {
     protected override void Init()
     {
