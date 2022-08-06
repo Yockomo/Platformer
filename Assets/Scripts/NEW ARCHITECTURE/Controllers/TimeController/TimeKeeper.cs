@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class TimeKeeper: ICanBePaused
@@ -7,7 +8,9 @@ public class TimeKeeper: ICanBePaused
     public float Time => _currentTime;
     
     public bool IsPaused { get; private set; }
-
+    
+    public event Action EndTimeEvent;
+    
     public TimeKeeper(float maxTime)
     {
         _currentTime = maxTime;
@@ -24,6 +27,13 @@ public class TimeKeeper: ICanBePaused
         {
             _currentTime -= 1f;
             yield return new WaitForSecondsRealtime(1f);
+            CheckEndEvent();
         }
+    }
+
+    private void CheckEndEvent()
+    {
+        if(_currentTime < 1)
+            EndTimeEvent?.Invoke();
     }
 }

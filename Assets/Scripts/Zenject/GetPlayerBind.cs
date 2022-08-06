@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 public class GetPlayerBind : MonoInstaller
@@ -12,9 +11,5 @@ public class GetPlayerBind : MonoInstaller
 
         var playerInput = _playerInstance.GetComponent<InputSystem>();
         Container.Bind<InputSystem>().FromInstance(playerInput).AsSingle().NonLazy();
-        
-        var pauseController = new PauseController();
-        Container.Bind<IPauseController>().FromInstance(pauseController).AsSingle().NonLazy();
-        Container.Bind<IPauseRegister>().FromInstance(pauseController).AsSingle().NonLazy();
     }
 }

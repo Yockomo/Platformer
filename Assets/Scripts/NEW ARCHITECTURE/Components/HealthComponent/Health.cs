@@ -32,14 +32,14 @@ public abstract class Health : MonoBehaviour, IHealth, IHealthChanger
         Changed?.Invoke(fullHealth, currentHealth);
     }
     
-    public void AddValue(int count)
+    public virtual void AddValue(int count)
     {
         currentHealth += count;
         if (currentHealth > fullHealth) currentHealth = fullHealth;
         Changed?.Invoke(fullHealth, currentHealth);
     }
 
-    public void DecValue(int count)
+    public virtual void DecValue(int count)
     {
         currentHealth -= count;
         Changed?.Invoke(fullHealth, currentHealth);
