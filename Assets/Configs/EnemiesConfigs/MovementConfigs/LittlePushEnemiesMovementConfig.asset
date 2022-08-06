@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658f0c374134f384d9e5c79e200ce743, type: 3}
   m_Name: LittlePushEnemiesMovementConfig
   m_EditorClassIdentifier: 
-  _stoppingDistance: 1
+  _stoppingDistance: 0
   _reactDistance: 3
   _moveSpeed: 3
