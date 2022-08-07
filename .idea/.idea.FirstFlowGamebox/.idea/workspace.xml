@@ -9,10 +9,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NEW ARCHITECTURE/Actors/ActivatedActors/ActivatedActor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NEW ARCHITECTURE/Actors/Camera/FollowPlayerCamera.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NEW ARCHITECTURE/Behaviours/NPCBehaviour/MoveBehaviourContainer/FollowPlayerBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NEW ARCHITECTURE/Controllers/TimeController/GameTimeController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Architecture/Controllers/VIewController/ViewController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ButtonsHighLighter/ButtonHighlight.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Health/HealthView.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Score/ScoreView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Zenject/GetPauseBind.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -78,7 +78,9 @@
       <workItem from="1659741486391" duration="1134000" />
       <workItem from="1659785305035" duration="1953000" />
       <workItem from="1659787274092" duration="97000" />
-      <workItem from="1659787439000" duration="803000" />
+      <workItem from="1659787439000" duration="2402000" />
+      <workItem from="1659822952720" duration="2325000" />
+      <workItem from="1659828859045" duration="4599000" />
     </task>
     <servers />
   </component>
