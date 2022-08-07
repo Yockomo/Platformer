@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Build;
 
 public class SlowPanelBehaviour : BaseBehaviour, ISlowBehaviour, IDisposable
 {
@@ -41,7 +42,8 @@ public class SlowPanelBehaviour : BaseBehaviour, ISlowBehaviour, IDisposable
     
     private void ResetSlowDown()
     {
-        _actorMovement.ResetSpeed();
+        if (_actorMovement != null) 
+            _actorMovement.ResetSpeed();
     }
 
     public void Dispose()

@@ -10,10 +10,10 @@ public class PlayerAnimatorManager : AnimatorManager
     private readonly int _dead = Animator.StringToHash("IsDead");
 
     private readonly int _animIDSpeed = Animator.StringToHash("Speed");
+    private readonly int _motionSpeed = Animator.StringToHash("MotionSpeed");
     private readonly int _animIDGrounded = Animator.StringToHash("Grounded");
     private readonly int _animIDJump = Animator.StringToHash("Jump");
     private readonly int _doubleJump = Animator.StringToHash("DoubleJump");
-
     public PlayerAnimatorManager(Animator animator) : base(animator)
     {
     }
@@ -23,6 +23,11 @@ public class PlayerAnimatorManager : AnimatorManager
         _animator.SetFloat(_animIDSpeed, value);
     }
 
+    public void SetMotionSpeedParameter(float value)
+    {
+        _animator.SetFloat(_motionSpeed,value);
+    }
+    
     public void SetGrounded(bool value)
     {
         _animator.SetBool(_animIDGrounded, value);
@@ -43,6 +48,11 @@ public class PlayerAnimatorManager : AnimatorManager
         _animator.SetTrigger(_doubleJump);
     }
 
+    public void ResetDoubleJump()
+    {
+        _animator.ResetTrigger(_doubleJump);
+    }
+    
     public void SetAtack()
     {
         _animator.SetTrigger(_atack);

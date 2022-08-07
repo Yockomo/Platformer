@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LittlePushEnemiesMovementConfig
   m_EditorClassIdentifier: 
   _stoppingDistance: 0
-  _reactDistance: 3
+  _reactDistance: 10
   _moveSpeed: 3

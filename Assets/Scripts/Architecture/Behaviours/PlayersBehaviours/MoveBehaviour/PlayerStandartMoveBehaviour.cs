@@ -117,6 +117,7 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
                          new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
         _animatorManager.SetSpeedParameter(_animationBlend);
+        _animatorManager.SetMotionSpeedParameter(inputMagnitude);
     }
 
     private void JumpAndGravity()
@@ -124,7 +125,8 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSe
         if (Grounded)
         {
             isDoubleJumped = false;
-
+            _animatorManager.ResetDoubleJump();
+            
             _fallTimeoutDelta = _movable.FallTimeout;
 
             _animatorManager.SetJump(false);
