@@ -3,9 +3,13 @@ using Zenject;
 
 public class GetPlayerBind : MonoInstaller
 {
-    [SerializeField] private Player playerInstance;
+    [SerializeField] private Player _playerInstance;
+
     public override void InstallBindings()
     {
-        Container.Bind<Player>().FromInstance(playerInstance).AsSingle().NonLazy();
+        Container.Bind<Player>().FromInstance(_playerInstance).AsSingle().NonLazy();
+
+        var playerInput = _playerInstance.GetComponent<InputSystem>();
+        Container.Bind<InputSystem>().FromInstance(playerInput).AsSingle().NonLazy();
     }
 }
